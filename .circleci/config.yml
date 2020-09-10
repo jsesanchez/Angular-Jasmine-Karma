@@ -9,19 +9,8 @@ jobs:
     steps:
       - checkout
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package-lock.json" }}
-          - v1-dependencies-
-
+      # Download and cache dependencie
       - run: npm install
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package-lock.json" }}
-      - run: npm run lint
       # run tests!
       - run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
       - store_test_results: 
