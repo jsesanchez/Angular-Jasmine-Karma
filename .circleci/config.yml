@@ -1,18 +1,16 @@
 version: 2
 jobs:
   build:
+    working_directory: ~/my-project
     docker:
       - image: circleci/node:8-browsers
-
-    working_directory: ~/project-name
-
     steps:
       - checkout
-
-      # Download and cache dependencie
+      - restore_cache:
+          key: AngularCircleCI-{{ .Branch }}-{{ checksum "package.json" }}
       - run: npm install
-      # run tests!
-      - run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-      - store_test_results: 
-          path: target/surefire-reports
-         
+      - save_cache:
+          key: AngularCircleCI-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - "node_modules"
+      - run: xvfb-run -a npm run test -- --single-run --no-progress --browser=ChromeNoSandbox
