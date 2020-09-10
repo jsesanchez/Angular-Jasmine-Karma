@@ -7,7 +7,9 @@ jobs:
     steps:
       - run:
           command: cd angular-testing
+      - run:
           command: pwd
+      - run:
           command: ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'    
       - checkout      
       - restore_cache:
