@@ -6,9 +6,9 @@ jobs:
       - image: circleci/node:8-browsers
     steps:
       - checkout:
-          path: ~/myapp/angular-testing/angular-testing
+          path: ~/
       - run:
-          command: ls
+          command:  tree -a
       - restore_cache:
           key: angular-whishlist-{{ .Branch }}-{{ checksum "package.json" }}
       - run: npm install
