@@ -7,7 +7,9 @@ jobs:
     steps:
       - checkout
       - run:
-          command: tree -a
+          command: pwd
+      - run:
+          command: ls    
       - restore_cache:
           key: angular-whishlist-{{ .Branch }}-{{ checksum "package.json" }}
       - run: npm install
