@@ -6,7 +6,7 @@ jobs:
       - image: circleci/node:8-browsers
     steps:
       - checkout:
-          path: ~/myapp/angular-testing
+          path: ~/myapp/angular-testing/angular-testing
       - run:
           command: ls
       - restore_cache:
