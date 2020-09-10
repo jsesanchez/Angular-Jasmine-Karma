@@ -1,27 +1,28 @@
-version: 2.1
-
+version: 2
 jobs:
-    # The test job
-    test:
-        working_directory: ~/AngularTest
-        docker:
-            - image: circleci/node:10-browsers
-        steps:
-            - checkout
-            - restore_cache:
-                keys:
-                - v1-dependencies-{{ checksum "package-lock.json" }}
-                - v1-dependencies-
-                # Install project dependencies
-            - run:
-                name: Install local dependencies
-                command: npm install
-                # Cache local dependencies if they don't exist
-            - save_cache:
-                key: v1-dependencies-{{ checksum "package-lock.json" }}
-                paths:
-                    - node_modules
-                # Test the source codeasd
-            - run:
-                name: Testing
-                command: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+  build:
+    docker:
+      - image: circleci/node:10-browsers
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+
+      - run: npm install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      # run tests!
+      - run: npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+      - store_test_results: 
+          path: target/surefire-reports
