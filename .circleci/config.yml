@@ -9,7 +9,7 @@ jobs:
       - run:
           command: pwd
       - run:
-          command: ls    
+          command: ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'    
       - restore_cache:
           key: angular-whishlist-{{ .Branch }}-{{ checksum "package.json" }}
       - run: npm install
