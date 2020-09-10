@@ -1,12 +1,12 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/myapp
+    working_directory: ~/angular-testing
     docker:
       - image: circleci/node:8-browsers
     steps:
       - checkout:
-          path: ~/myapp
+          path: ~/angular-testing
       - restore_cache:
           key: angular-whishlist-{{ .Branch }}-{{ checksum "package.json" }}
       - run: npm install
