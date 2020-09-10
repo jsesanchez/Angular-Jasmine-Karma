@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: circleci/node:10-browsers
 
-    working_directory: ~/repo
+    working_directory: ~/project-name
 
     steps:
       - checkout
@@ -21,8 +21,9 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package-lock.json" }}
-
+      - run: npm run lint
       # run tests!
       - run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
       - store_test_results: 
           path: target/surefire-reports
+         
