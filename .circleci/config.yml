@@ -18,4 +18,4 @@ jobs:
             - "node_modules"
       - run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
       - store_test_results: 
-          path: target/surefire-reports
+          path: test-results
