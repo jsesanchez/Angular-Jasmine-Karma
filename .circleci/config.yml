@@ -16,4 +16,4 @@ jobs:
           key: angular-whishlist-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - "node_modules"
-      - run: npm run test -- --watch=false --progress=false --browser=ChromeHeadLessCI
+      - run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
