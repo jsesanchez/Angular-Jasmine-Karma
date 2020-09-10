@@ -7,12 +7,11 @@ jobs:
     steps:
       - checkout:
           path: ~/angular-testing
-      -run: ls -la
       - restore_cache:
-          key: angular-whishlist-{{ .Branch }}-{{ checksum "package.json" }}
+          key: angular-whishlist-{{ checksum "package.json" }}
       - run: npm install
       - save_cache:
-          key: angular-whishlist-{{ .Branch }}-{{ checksum "package.json" }}
+          key: angular-whishlist-{{ checksum "package.json" }}
           paths:
             - "node_modules"
       - run: npm run test -- --watch=false --progress=false --browser=ChromeHeadLessCI
