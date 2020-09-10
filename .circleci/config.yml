@@ -1,12 +1,12 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/angular-testing
+    working_directory: ~/myapp
     docker:
       - image: circleci/node:8-browsers
     steps:
       - checkout:
-          path: ~/angular-testing
+          path: ~/myapp/angular-testing
       - run:
           command: ls
       - restore_cache:
