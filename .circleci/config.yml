@@ -1,12 +1,12 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/myapp
+    working_directory: ~/myapp/angular-testing
     docker:
       - image: circleci/node:8-browsers
     steps:
       - checkout:
-          path: ~/myapp/angular-testing/
+          path: ~/myapp
       - run:
           command: ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'    
       - restore_cache:
