@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/myapp/angular-testing/
+    working_directory: ~/myapp
     docker:
       - image: circleci/node:8-browsers
     steps:
