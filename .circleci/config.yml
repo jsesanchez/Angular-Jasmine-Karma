@@ -5,13 +5,13 @@ jobs:
     docker:
       - image: circleci/node:8-browsers
     steps:
+      - checkout
       - run:
           command: cd angular-testing
       - run:
           command: pwd
       - run:
-          command: ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'    
-      - checkout      
+          command: ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'          
       - restore_cache:
           key: angular-whishlist-{{ .Branch }}-{{ checksum "package.json" }}
       - run: npm install
